@@ -1,5 +1,11 @@
 # Raspberry Pi setup
 
+## Making the SD card
+
+TBD
+
+## Headless setup
+
 TBD
 
 # NodeRed setup
