@@ -13,7 +13,7 @@ TBD
 Connect to the raspberry pi via SSH and type:
 
 ```console
-bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
 
 This command will install the newest version of NodeJS, NodeRed, and (optionally) the RaspberryPi specific nodes.
