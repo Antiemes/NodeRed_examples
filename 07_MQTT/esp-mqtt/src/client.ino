@@ -4,14 +4,16 @@
 #include <Adafruit_NeoPixel.h>
 #include <ArduinoJson.h>
 
+#include "secret.h"
+
 //#define DHTTYPE DHT11   // DHT 11
 //#define DHTTYPE DHT21   // DHT 21 (AM2301)
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
-const char* ssid = "TP_ROB";
-const char* password = "Aut0mat1kaIoT";
+const char* ssid = SSID;
+const char* password = PSK;
 
-const char* mqtt_server = "10.22.0.107";
+const char* mqtt_server = MQTT_BROKER;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -96,7 +98,7 @@ void reconnect()
   while (!client.connected())
 	{
     Serial.print("Attempting MQTT connection...");
-    if (client.connect("ESP8266Client"))
+    if (client.connect("ESP8266Client", MQTT_USER, MQTT_PASSWORD))
 		{
       Serial.println("connected");  
       client.subscribe("room/lamp");
