@@ -36,4 +36,21 @@ The dashboard UI can be accessed via:
 
 > http://192.168.1.25:1880/ui
 
-Note that these services can be accessed only through HTTP (and **not** HTTPS), via port 1880. 
+Note that these services can be accessed only through HTTP (and **not** HTTPS), via port 1880.
+
+# Docker setup
+
+After installing and starting docker, execute:
+
+On Linux:
+
+```console
+docker run -it -p 1880:1880 -v ~/.node-red:/data --name mynodered nodered/node-re
+```
+
+on Windows:
+
+```console
+docker run -it -p 1880:1880 -v "c:\node-red":/data --name mynodered nodered/node-re
+```
+
