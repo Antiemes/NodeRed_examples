@@ -45,12 +45,12 @@ After installing and starting docker, execute:
 On Linux:
 
 ```console
-docker run -it -p 1880:1880 -v ~/.node-red:/data --name mynodered nodered/node-red
+docker run --rm -it -p 1880:1880 -v ~/.node-red:/data --name mynodered nodered/node-red
 ```
 
 on Windows:
 
 ```console
-docker run -it -p 1880:1880 -v "c:\node-red":/data --name mynodered nodered/node-red
+docker run --rm -it -p 1880:1880 -v "c:\node-red":/data --name mynodered nodered/node-red
 ```
 
