@@ -1,0 +1,555 @@
+[
+    {
+        "id": "c382bc4196b11c97",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0846da5f52578e84",
+        "type": "sqlite",
+        "z": "c382bc4196b11c97",
+        "mydb": "580f2b2c28505b41",
+        "sqlquery": "fixed",
+        "sql": "CREATE TABLE\nIF NOT EXISTS measurements\n(id INTEGER PRIMARY KEY AUTOINCREMENT,\ntime_stamp INTEGER,\nmeasurement INTEGER);",
+        "name": "DB",
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "c52fc93eb98c01d9"
+            ]
+        ]
+    },
+    {
+        "id": "b449589598b8950a",
+        "type": "inject",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "0846da5f52578e84"
+            ]
+        ]
+    },
+    {
+        "id": "c52fc93eb98c01d9",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0326b71798c5a4ab",
+        "type": "sqlite",
+        "z": "c382bc4196b11c97",
+        "mydb": "580f2b2c28505b41",
+        "sqlquery": "prepared",
+        "sql": "INSERT INTO measurements\n(time_stamp, measurement)\nVALUES ($time_stamp, $measurement);\n",
+        "name": "DB",
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "d094771cbb77dae9"
+            ]
+        ]
+    },
+    {
+        "id": "ee86e3c19cbc49e7",
+        "type": "inject",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "props": [
+            {
+                "p": "params",
+                "v": "{\"$measurement\":4,\"$time_stamp\":0}",
+                "vt": "json"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "6b2eb25861ce9c39"
+            ]
+        ]
+    },
+    {
+        "id": "d094771cbb77dae9",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "fbb4b982320ee2c3",
+        "type": "sqlite",
+        "z": "c382bc4196b11c97",
+        "mydb": "580f2b2c28505b41",
+        "sqlquery": "fixed",
+        "sql": "SELECT time_stamp AS x,\nmeasurement AS y FROM measurements;\n",
+        "name": "DB",
+        "x": 330,
+        "y": 480,
+        "wires": [
+            [
+                "43e28d59b9517a96"
+            ]
+        ]
+    },
+    {
+        "id": "62c484acbbce4629",
+        "type": "inject",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 480,
+        "wires": [
+            [
+                "fbb4b982320ee2c3"
+            ]
+        ]
+    },
+    {
+        "id": "9116028c27075257",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "915cc72b3bb730c7",
+        "type": "sqlite",
+        "z": "c382bc4196b11c97",
+        "mydb": "580f2b2c28505b41",
+        "sqlquery": "fixed",
+        "sql": "DROP TABLE measurements;",
+        "name": "DB",
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "f709c946c38a9737"
+            ]
+        ]
+    },
+    {
+        "id": "980bf5fe9e9c33d3",
+        "type": "inject",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "915cc72b3bb730c7"
+            ]
+        ]
+    },
+    {
+        "id": "f709c946c38a9737",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "17e7dbcd43989eb3",
+        "type": "ui_chart",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "group": "777ea362537dbfa6",
+        "order": 0,
+        "width": "12",
+        "height": "6",
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 600,
+        "wires": [
+            [
+                "b4a57bbdbe40687e"
+            ]
+        ]
+    },
+    {
+        "id": "b4a57bbdbe40687e",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "5166616e9baeb865",
+        "type": "inject",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"series\":[\"A\"],\"data\":[[{\"x\":1504029632890,\"y\":5},{\"x\":1504029636001,\"y\":4},{\"x\":1504029638656,\"y\":2}]]}]",
+        "payloadType": "json",
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "17e7dbcd43989eb3",
+                "54cde14e936342cf",
+                "bd50ed83851a9ccd"
+            ]
+        ]
+    },
+    {
+        "id": "6b2eb25861ce9c39",
+        "type": "change",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "params[\"$time_stamp\"]",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 360,
+        "wires": [
+            [
+                "0326b71798c5a4ab",
+                "c12421d09350cf8e"
+            ]
+        ]
+    },
+    {
+        "id": "c12421d09350cf8e",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "params",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a4076db37674d3b2",
+        "type": "comment",
+        "z": "c382bc4196b11c97",
+        "name": "DROP DB",
+        "info": "",
+        "x": 120,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8be5385548873696",
+        "type": "comment",
+        "z": "c382bc4196b11c97",
+        "name": "CREATE DB",
+        "info": "",
+        "x": 130,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6e2fb04e25c9cafc",
+        "type": "comment",
+        "z": "c382bc4196b11c97",
+        "name": "INSERT TO DB",
+        "info": "",
+        "x": 140,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7f9cce7b58f2130b",
+        "type": "comment",
+        "z": "c382bc4196b11c97",
+        "name": "SELECT (test)",
+        "info": "",
+        "x": 130,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "43e28d59b9517a96",
+        "type": "function",
+        "z": "c382bc4196b11c97",
+        "name": "function 1",
+        "func": "msg.payload = [{\"series\":[\"A\"],\"data\": [msg.payload]}];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 480,
+        "wires": [
+            [
+                "9116028c27075257",
+                "17e7dbcd43989eb3"
+            ]
+        ]
+    },
+    {
+        "id": "54cde14e936342cf",
+        "type": "json",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 290,
+        "y": 680,
+        "wires": [
+            [
+                "0564e76dce55c9ff"
+            ]
+        ]
+    },
+    {
+        "id": "0564e76dce55c9ff",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "bd50ed83851a9ccd",
+        "type": "debug",
+        "z": "c382bc4196b11c97",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2b2e0db4236762a7",
+        "type": "inject",
+        "z": "c382bc4196b11c97",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 670,
+        "y": 680,
+        "wires": [
+            [
+                "17e7dbcd43989eb3"
+            ]
+        ]
+    },
+    {
+        "id": "580f2b2c28505b41",
+        "type": "sqlitedb",
+        "db": "/data/sqlite",
+        "mode": "RWC"
+    },
+    {
+        "id": "777ea362537dbfa6",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "3a7b62de6601f386",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3a7b62de6601f386",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
