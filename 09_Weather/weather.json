@@ -1,0 +1,397 @@
+[
+    {
+        "id": "5421c1d295e8e788",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6f16131796a4afd0",
+        "type": "http request",
+        "z": "5421c1d295e8e788",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.open-meteo.com/v1/forecast?latitude=47.0933&longitude=17.9115&hourly=temperature_2m,rain&timezone=Europe%2FBerlin",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "2dab5ad9d4a1c042"
+            ]
+        ]
+    },
+    {
+        "id": "6b3d877243a5aed4",
+        "type": "inject",
+        "z": "5421c1d295e8e788",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "6f16131796a4afd0"
+            ]
+        ]
+    },
+    {
+        "id": "a0fecc32cc1561f2",
+        "type": "debug",
+        "z": "5421c1d295e8e788",
+        "name": "Homerseklet holnap reggel 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2dab5ad9d4a1c042",
+        "type": "json",
+        "z": "5421c1d295e8e788",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 690,
+        "y": 340,
+        "wires": [
+            [
+                "3119d5caba042062",
+                "aa2a4679aa7986ca",
+                "878b7d3f647191a1",
+                "12adfcc3bf54d53b",
+                "ef046f7b05a5a544"
+            ]
+        ]
+    },
+    {
+        "id": "3119d5caba042062",
+        "type": "change",
+        "z": "5421c1d295e8e788",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hourly.temperature_2m[31]",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 340,
+        "wires": [
+            [
+                "a0fecc32cc1561f2",
+                "664de97eb3ada0c1"
+            ]
+        ]
+    },
+    {
+        "id": "aa2a4679aa7986ca",
+        "type": "change",
+        "z": "5421c1d295e8e788",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hourly.rain[31]",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 440,
+        "wires": [
+            [
+                "99044b85b6921475",
+                "1809dc4d3374054a"
+            ]
+        ]
+    },
+    {
+        "id": "99044b85b6921475",
+        "type": "debug",
+        "z": "5421c1d295e8e788",
+        "name": "Eso holnap reggel 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "878b7d3f647191a1",
+        "type": "debug",
+        "z": "5421c1d295e8e788",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "12adfcc3bf54d53b",
+        "type": "change",
+        "z": "5421c1d295e8e788",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hourly.temperature_2m[40]",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 540,
+        "wires": [
+            [
+                "ee04e05b2989eb9f",
+                "83dbd91fa367b90a"
+            ]
+        ]
+    },
+    {
+        "id": "ef046f7b05a5a544",
+        "type": "change",
+        "z": "5421c1d295e8e788",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hourly.rain[40]",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 640,
+        "wires": [
+            [
+                "3d1bbed93907f632",
+                "1a02ee1864572c42"
+            ]
+        ]
+    },
+    {
+        "id": "ee04e05b2989eb9f",
+        "type": "debug",
+        "z": "5421c1d295e8e788",
+        "name": "Homerseklet holnap du. 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "3d1bbed93907f632",
+        "type": "debug",
+        "z": "5421c1d295e8e788",
+        "name": "Eso holnap du. 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "664de97eb3ada0c1",
+        "type": "ui_text",
+        "z": "5421c1d295e8e788",
+        "group": "0420665286ca5a76",
+        "order": 1,
+        "width": "4",
+        "height": "2",
+        "name": "",
+        "label": "Homerseklet",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1090,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1809dc4d3374054a",
+        "type": "ui_text",
+        "z": "5421c1d295e8e788",
+        "group": "0420665286ca5a76",
+        "order": 2,
+        "width": "4",
+        "height": "2",
+        "name": "",
+        "label": "Eso",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1070,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "83dbd91fa367b90a",
+        "type": "ui_text",
+        "z": "5421c1d295e8e788",
+        "group": "f1a67ebcdabd1fa9",
+        "order": 1,
+        "width": "4",
+        "height": "2",
+        "name": "",
+        "label": "Homerseklet",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1090,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "1a02ee1864572c42",
+        "type": "ui_text",
+        "z": "5421c1d295e8e788",
+        "group": "f1a67ebcdabd1fa9",
+        "order": 2,
+        "width": "4",
+        "height": "2",
+        "name": "",
+        "label": "Eso",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1070,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "0420665286ca5a76",
+        "type": "ui_group",
+        "name": "Holnap reggel",
+        "tab": "e7608a3e4272c589",
+        "order": 1,
+        "disp": true,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f1a67ebcdabd1fa9",
+        "type": "ui_group",
+        "name": "Holnap delutan",
+        "tab": "e7608a3e4272c589",
+        "order": 2,
+        "disp": true,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e7608a3e4272c589",
+        "type": "ui_tab",
+        "name": "Idojaras",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
