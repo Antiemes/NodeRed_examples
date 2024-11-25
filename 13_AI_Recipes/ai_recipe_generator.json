@@ -1,0 +1,42 @@
+[
+    {
+        "id": "91074192f3f384a8",
+        "type": "ui_text",
+        "z": "ee2d864385a5dc42",
+        "group": "498098df71a0f698",
+        "order": 5,
+        "width": "6",
+        "height": "24",
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 970,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "498098df71a0f698",
+        "type": "ui_group",
+        "name": "DefaultRecept",
+        "tab": "66665142455e603e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "66665142455e603e",
+        "type": "ui_tab",
+        "name": "Recept",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
