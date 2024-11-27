@@ -1,0 +1,39 @@
+[
+    {
+        "id": "64192ad211eb579f",
+        "type": "http request",
+        "z": "d547cd769a46dc00",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Authorization",
+                "valueType": "other",
+                "valueValue": "Bearer API_KEY"
+            }
+        ],
+        "x": 670,
+        "y": 780,
+        "wires": [
+            [
+                "3fec97c2e88358a6"
+            ]
+        ]
+    }
+]
