@@ -1,0 +1,918 @@
+[
+    {
+        "id": "ee2d864385a5dc42",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "591535cf38e79b1d",
+        "type": "http request",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Authorization",
+                "valueType": "other",
+                "valueValue": "Bearer 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"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 790,
+        "y": 980,
+        "wires": [
+            [
+                "ad4bd4575d854a5b"
+            ]
+        ]
+    },
+    {
+        "id": "482865c9c77f5372",
+        "type": "inject",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"model\":\"llama3-8b-8192\",\"messages\":[{\"role\":\"user\",\"content\":\"Explain the importance of fast language models\"}]}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 980,
+        "wires": [
+            [
+                "87649c44dba5270f"
+            ]
+        ]
+    },
+    {
+        "id": "179df8860cdfafb6",
+        "type": "debug",
+        "z": "ee2d864385a5dc42",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "2e659bf9189295bc",
+        "type": "inject",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Write a recipe. I have the follwing ingredients at home. (Don't have to use all of them.) water, milk, white flour, eggs, tomatoes, baking soda, cheese",
+        "payloadType": "str",
+        "x": 230,
+        "y": 1140,
+        "wires": [
+            [
+                "54ae44279feb96c4"
+            ]
+        ]
+    },
+    {
+        "id": "54ae44279feb96c4",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "query",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87649c44dba5270f",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.messages[0].content",
+                "pt": "msg",
+                "to": "query",
+                "tot": "flow",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 980,
+        "wires": [
+            [
+                "591535cf38e79b1d"
+            ]
+        ]
+    },
+    {
+        "id": "ad4bd4575d854a5b",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.choices[0].message.content",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 1100,
+        "wires": [
+            [
+                "179df8860cdfafb6",
+                "91074192f3f384a8"
+            ]
+        ]
+    },
+    {
+        "id": "67b03a0e65b0c0f5",
+        "type": "ui_switch",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "label": "Flour",
+        "tooltip": "",
+        "group": "498098df71a0f698",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 410,
+        "y": 420,
+        "wires": [
+            [
+                "b5d130271299547f"
+            ]
+        ]
+    },
+    {
+        "id": "8dfa3b380d8bca56",
+        "type": "debug",
+        "z": "ee2d864385a5dc42",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b5d130271299547f",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": ", white flour",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 420,
+        "wires": [
+            [
+                "b41cdd51f9f2c763"
+            ]
+        ]
+    },
+    {
+        "id": "b41cdd51f9f2c763",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ingr1",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 420,
+        "wires": [
+            [
+                "8dfa3b380d8bca56"
+            ]
+        ]
+    },
+    {
+        "id": "93570c224ffd238f",
+        "type": "ui_switch",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "label": "Eggs",
+        "tooltip": "",
+        "group": "498098df71a0f698",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 410,
+        "y": 500,
+        "wires": [
+            [
+                "94ef7be380fa3e29"
+            ]
+        ]
+    },
+    {
+        "id": "4367d571dd096aad",
+        "type": "debug",
+        "z": "ee2d864385a5dc42",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "94ef7be380fa3e29",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": ", eggs",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "05ccdee0d32dc8b8"
+            ]
+        ]
+    },
+    {
+        "id": "05ccdee0d32dc8b8",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ingr2",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 500,
+        "wires": [
+            [
+                "4367d571dd096aad"
+            ]
+        ]
+    },
+    {
+        "id": "e8f853c2ada19790",
+        "type": "ui_switch",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "label": "Cheese",
+        "tooltip": "",
+        "group": "498098df71a0f698",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 420,
+        "y": 580,
+        "wires": [
+            [
+                "4a0878f78de8df94"
+            ]
+        ]
+    },
+    {
+        "id": "b908224e949e4cae",
+        "type": "debug",
+        "z": "ee2d864385a5dc42",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4a0878f78de8df94",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": ", cheese",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 580,
+        "wires": [
+            [
+                "f73d2993490f31aa"
+            ]
+        ]
+    },
+    {
+        "id": "f73d2993490f31aa",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ingr3",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 580,
+        "wires": [
+            [
+                "b908224e949e4cae"
+            ]
+        ]
+    },
+    {
+        "id": "6828a1d270ac1862",
+        "type": "ui_switch",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "label": "Tomatoes",
+        "tooltip": "",
+        "group": "498098df71a0f698",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 420,
+        "y": 660,
+        "wires": [
+            [
+                "5e9b01019e9652d5"
+            ]
+        ]
+    },
+    {
+        "id": "d959087bac6f5fa2",
+        "type": "debug",
+        "z": "ee2d864385a5dc42",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "5e9b01019e9652d5",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": ", tomatoes",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 660,
+        "wires": [
+            [
+                "e718de2d67cf59e7"
+            ]
+        ]
+    },
+    {
+        "id": "e718de2d67cf59e7",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ingr4",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 660,
+        "wires": [
+            [
+                "d959087bac6f5fa2"
+            ]
+        ]
+    },
+    {
+        "id": "a1d2112b6730883d",
+        "type": "comment",
+        "z": "ee2d864385a5dc42",
+        "name": "Flour",
+        "info": "",
+        "x": 210,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "b6aa6cd32e42bcf3",
+        "type": "comment",
+        "z": "ee2d864385a5dc42",
+        "name": "Eggs",
+        "info": "",
+        "x": 210,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6d07ec2944bb3679",
+        "type": "comment",
+        "z": "ee2d864385a5dc42",
+        "name": "Cheese",
+        "info": "",
+        "x": 210,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f2846608cbbd2c0b",
+        "type": "comment",
+        "z": "ee2d864385a5dc42",
+        "name": "Tomatoes",
+        "info": "",
+        "x": 220,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "0e7e504ef9b4d04e",
+        "type": "function",
+        "z": "ee2d864385a5dc42",
+        "name": "function 1",
+        "func": "\nmsg.payload = \"Write a recipe. I have the follwing ingredients at home. (Don't have to use all of them.) water\"\n+ flow.get(\"ingr1\")\n+ flow.get(\"ingr2\")\n+ flow.get(\"ingr3\")\n+ flow.get(\"ingr4\");\n\nflow.set(\"query\", msg.payload);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 760,
+        "wires": [
+            [
+                "ac36c0c0467c3834",
+                "71b0b320342c050a"
+            ]
+        ]
+    },
+    {
+        "id": "e53ff45ee92a7999",
+        "type": "delay",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 760,
+        "wires": [
+            [
+                "0e7e504ef9b4d04e"
+            ]
+        ]
+    },
+    {
+        "id": "ac36c0c0467c3834",
+        "type": "debug",
+        "z": "ee2d864385a5dc42",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "71b0b320342c050a",
+        "type": "change",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"model\":\"llama3-8b-8192\",\"messages\":[{\"role\":\"user\",\"content\":\"Explain the importance of fast language models\"}]}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 880,
+        "wires": [
+            [
+                "87649c44dba5270f"
+            ]
+        ]
+    },
+    {
+        "id": "d6efe7ceeac8cf54",
+        "type": "ui_button",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "group": "498098df71a0f698",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "GO!",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "65ae2944d0c14feb"
+            ]
+        ]
+    },
+    {
+        "id": "65ae2944d0c14feb",
+        "type": "function",
+        "z": "ee2d864385a5dc42",
+        "name": "function 2",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 420,
+        "wires": [
+            [
+                "67b03a0e65b0c0f5",
+                "93570c224ffd238f",
+                "e8f853c2ada19790",
+                "6828a1d270ac1862",
+                "e53ff45ee92a7999"
+            ]
+        ]
+    },
+    {
+        "id": "f5287153c37b4b10",
+        "type": "inject",
+        "z": "ee2d864385a5dc42",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 260,
+        "wires": [
+            [
+                "65ae2944d0c14feb"
+            ]
+        ]
+    },
+    {
+        "id": "91074192f3f384a8",
+        "type": "ui_text",
+        "z": "ee2d864385a5dc42",
+        "group": "498098df71a0f698",
+        "order": 5,
+        "width": "6",
+        "height": "24",
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 970,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "498098df71a0f698",
+        "type": "ui_group",
+        "name": "DefaultRecept",
+        "tab": "66665142455e603e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "66665142455e603e",
+        "type": "ui_tab",
+        "name": "Recept",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
