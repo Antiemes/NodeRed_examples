@@ -14,9 +14,11 @@
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 // Update these with values suitable for your network.
-const char* ssid = "ssid";
-const char* password = "password";
-const char* mqtt_server = "1844cfd5f998474a9d9513b7433e2b92.s1.eu.hivemq.cloud";
+const char* ssid = "W";
+const char* password = "wwwwwwww";
+//const char* mqtt_server = "1844cfd5f998474a9d9513b7433e2b92.s1.eu.hivemq.cloud";
+//const char* mqtt_server = "27236016b1b146ad8aad205630bdda54.s1.eu.hivemq.cloud";
+const char* mqtt_server = "ha4uc.ddns.net";
 
 // A single, global CertStore which can be used by all connections.
 // Needs to stay live the entire time any of the WiFiClientBearSSLs
@@ -140,7 +142,8 @@ void reconnect()
     String clientId = "ESP8266Client - MyClient";
     // Attempt to connect
     // Insert your password
-    if (client->connect(clientId.c_str(), "user", "password"))
+    //if (client->connect(clientId.c_str(), "antiemes", "aiXoog8n"))
+    if (client->connect(clientId.c_str(), "wsn", "WSN-1234"))
     {
       Serial.println("connected");
       // Once connected, publish an announcement…
@@ -231,8 +234,8 @@ void loop()
     static char humidityTemp[7];
     dtostrf(h, 6, 2, humidityTemp);
 
-    client->publish("room/temperature", temperatureTemp);
-    client->publish("room/humidity", humidityTemp);
+    client->publish("/room1/temperature", temperatureTemp);
+    client->publish("/room1/humidity", humidityTemp);
     
     Serial.print("Humidity: ");
     Serial.print(h);

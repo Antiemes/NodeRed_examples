@@ -51,6 +51,6 @@ docker run --rm -it -p 1880:1880 -v ~/.node-red:/data --name mynodered nodered/n
 on Windows:
 
 ```console
-docker run --rm -it -p 1880:1880 -v "c:\node-red":/data --name mynodered antiemes/node-red
+docker run --rm -it -p 1880:1880 -v "c:\node-red":/data --name mynodered nodered/node-red
 ```
 
